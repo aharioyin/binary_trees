@@ -2,10 +2,10 @@
 
 /**
  * binary_tree_is_avl - finds if binary tree is an avl
- * @tree: pointer to  root node of  tree
+ * @tree: pointer to root node of tree
  *
  * Return: 1 if tree is avl
- * 0 'orwise
+ * 0 otherwise
  */
 int binary_tree_is_avl(const binary_tree_t *tree)
 {
@@ -17,48 +17,49 @@ int binary_tree_is_avl(const binary_tree_t *tree)
 
 /**
  * btia_helper - helper that finds if binary tree is an avl
- * @tree: pointer to  root node of  tree
+ * @tree: pointer to root node of tree
  * @min: minimum value
  * @max: maximum value
  *
  * Return: 1 if tree is avl
- * 0 'orwise
+ * 0 otherwise
  */
 int btia_helper(const binary_tree_t *tree, int min, int max)
 {
-	int path_left, path_right;
+	int path_l, path_r;
 
 	if (!tree)
 		return (1);
 	if (tree->n < min || tree->n > max)
 		return (0);
 
-	path_left = tree->left ? 1 + binary_tree_height(tree->left) : 0;
-	path_right = tree->right ? 1 + binary_tree_height(tree->right) : 0;
+	path_l = tree->left ? 1 + binary_tree_height(tree->left) : 0;
+	path_r = tree->right ? 1 + binary_tree_height(tree->right) : 0;
 
-	if (abs(path_left - path_right) > 1)
+	if (abs(path_l - path_r) > 1)
 		return (0);
 
 	return (btia_helper(tree->left, min, tree->n - 1) &&
 		btia_helper(tree->right, tree->n + 1, max));
+	/* This is part of BST check logic */
 }
 
 /**
- * binary_tree_height - measures  height of binary tree
- * @tree: tree to measure  height of
+ * binary_tree_height - measures height of binary tree
+ * @tree: tree to measure height of
  *
- * Return: height of  tree
+ * Return: height of tree
  * 0 if tree is NULL
  */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
-	size_t height_left = 0;
-	size_t height_right = 0;
+	size_t height_l = 0;
+	size_t height_r = 0;
 
 	if (!tree)
 		return (0);
 
-	height_left = tree->left ? 1 + binary_tree_height(tree->left) : 0;
-	height_right = tree->right ? 1 + binary_tree_height(tree->right) : 0;
-	return (height_left > height_right ? height_left : height_right);
+	height_l = tree->left ? 1 + binary_tree_height(tree->left) : 0;
+	height_r = tree->right ? 1 + binary_tree_height(tree->right) : 0;
+	return (height_l > height_r ? height_l : height_r);
 }

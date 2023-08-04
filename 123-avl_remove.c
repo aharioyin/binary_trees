@@ -7,7 +7,7 @@
  */
 void bal(avl_t **tree)
 {
-	int bal_val;
+	int bval;
 
 	if (tree == NULL || *tree == NULL)
 		return;
@@ -15,10 +15,10 @@ void bal(avl_t **tree)
 		return;
 	bal(&(*tree)->left);
 	bal(&(*tree)->right);
-	bal_val = binary_tree_balance((const binary_tree_t *)*tree);
-	if (bal_val > 1)
+	bval = binary_tree_balance((const binary_tree_t *)*tree);
+	if (bval > 1)
 		*tree = binary_tree_rotate_right((binary_tree_t *)*tree);
-	else if (bal_val < -1)
+	else if (bval < -1)
 		*tree = binary_tree_rotate_left((binary_tree_t *)*tree);
 }
 /**
@@ -52,7 +52,7 @@ int successor(bst_t *node)
  */
 int remove_type(bst_t *root)
 {
-	int new = 0;
+	int new_value = 0;
 
 	if (!root->left && !root->right)
 	{
@@ -86,9 +86,9 @@ int remove_type(bst_t *root)
 	}
 	else
 	{
-		new = successor(root->right);
-		root->n = new;
-		return (new);
+		new_value = successor(root->right);
+		root->n = new_value;
+		return (new_value);
 	}
 }
 /**

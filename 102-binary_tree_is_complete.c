@@ -6,6 +6,7 @@
  *
  * Return: 1 if tree is complete
  *         0 if tree is not complete
+ *         0 if tree is NULL
  */
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
@@ -26,6 +27,7 @@ int binary_tree_is_complete(const binary_tree_t *tree)
  *
  * Return: 1 if tree is complete
  *         0 if tree is not complete
+ *         0 if tree is NULL
  */
 int btic_helper(const binary_tree_t *tree, size_t index, size_t size)
 {
@@ -40,7 +42,7 @@ int btic_helper(const binary_tree_t *tree, size_t index, size_t size)
 }
 
 /**
- * binary_tree_size - measures size of tree
+ * binary_tree_size - measures size of binary tree
  * @tree: tree to measure size of
  *
  * Return: size of tree

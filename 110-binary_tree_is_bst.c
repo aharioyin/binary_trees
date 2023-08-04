@@ -5,7 +5,7 @@
  * @tree: pointer to root node of tree to check
  *
  * Return: 1 if tree is valid BST
- * else 0
+ * 0 rwise
  */
 int binary_tree_is_bst(const binary_tree_t *tree)
 {
@@ -33,4 +33,5 @@ int btib_helper(const binary_tree_t *tree, int min, int max)
 
 	return (btib_helper(tree->left, min, tree->n - 1) &&
 		btib_helper(tree->right, tree->n + 1, max));
+	/* -1 and +1 stem from re must be no duplicate values" req */
 }

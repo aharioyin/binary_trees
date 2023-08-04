@@ -11,15 +11,15 @@
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
 	avl_t *tree = NULL;
-	size_t center;
+	size_t middle;
 
 	if (!array)
 		return (NULL);
-	center = (size - 1) / 2;
-	tree = binary_tree_node(NULL, array[center]);
+	middle = (size - 1) / 2;
+	tree = binary_tree_node(NULL, array[middle]);
 
-	sata_helper(&tree, array, -1, center);
-	sata_helper(&tree, array, center, size);
+	sata_helper(&tree, array, -1, middle);
+	sata_helper(&tree, array, middle, size);
 
 	return (tree);
 }
@@ -34,17 +34,17 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 void sata_helper(avl_t **root, int *array, size_t lo, size_t hi)
 {
 	avl_t *new = NULL;
-	size_t center;
+	size_t middle;
 
 	if (hi - lo > 1)
 	{
-		center = (hi - lo) / 2 + lo;
-		new = binary_tree_node(*root, array[center]);
-		if (array[center] > (*root)->n)
+		middle = (hi - lo) / 2 + lo;
+		new = binary_tree_node(*root, array[middle]);
+		if (array[middle] > (*root)->n)
 			(*root)->right = new;
-		else if (array[center] < (*root)->n)
+		else if (array[middle] < (*root)->n)
 			(*root)->left = new;
-		sata_helper(&new, array, lo, center);
-		sata_helper(&new, array, center, hi);
+		sata_helper(&new, array, lo, middle);
+		sata_helper(&new, array, middle, hi);
 	}
 }
